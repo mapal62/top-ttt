@@ -56,6 +56,7 @@ function TttControl(playerOne = 'Player One', playerTwo = 'Player Two') {
         currentPlayer = (currentPlayer === players[0]) ? players[1] : players[0]
     }
     const getCurrentPlayer = () => currentPlayer;
+    const setPlayers = (p1, p2) => { players[0].name = p1; players[1].name = p2 };
     const currentTurn = (choosenField) => {
         console.log(
             `${getCurrentPlayer().name} marked field ${choosenField} with '${getCurrentPlayer().mark}'`);
@@ -75,6 +76,7 @@ function TttControl(playerOne = 'Player One', playerTwo = 'Player Two') {
     return {
         currentTurn,
         getCurrentPlayer,
+        setPlayers,
         actualState: board.printState
     };
 }
@@ -83,7 +85,8 @@ function ScreenControl() {
     const ttt = TttControl();
     const messageBox = document.querySelector('h1');
     const boardBox = document.querySelector('.ttt');
-
+    const inputNames = document.querySelector('form');
+    const tttNames = (p1, p2) => ttt.setPlayers(p1, p2);
     const updateScreen = (gameover) => {
         const savedSteps = ttt.actualState();
         const whoIsNext = ttt.getCurrentPlayer();
@@ -117,7 +120,16 @@ function ScreenControl() {
             boardBox.removeEventListener('click', userClicked);
         }
     }
+    function userNames(e) {
+        if (e.submitter.className === 'newgame') return;
+        e.preventDefault();
+        console.dir(e);
+        console.log(e.target.elements.playerone.value);
+        ttt.setPlayers(e.target.elements.playerone.value, e.target.elements.playertwo.value);
+        updateScreen(false);
+    }
     boardBox.addEventListener('click', userClicked);
+    inputNames.addEventListener('submit', userNames);
 
     updateScreen(false);
 }

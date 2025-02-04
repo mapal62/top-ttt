@@ -10,27 +10,45 @@
             width: 50%;
             margin: 0 auto;
             background-color: beige;
+            font-family: Arial, Helvetica, sans-serif;
         }
-h1 {
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-}
-.ttt {
-    width: 50%;
-    margin: 0 auto;
-    aspect-ratio: 1 / 1;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-}
-.cell {
-    width: 80%;
-    height: 80%;
-    font-size: 5vw;
-    border: none;
-    background-color: gray;
-    color: white;
-}
+
+        h1 {
+            text-align: center;
+        }
+
+        .ttt {
+            width: 50%;
+            margin: 0 auto;
+            aspect-ratio: 1 / 1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+        }
+
+        .cell {
+            width: 80%;
+            height: 80%;
+            font-size: 5vw;
+            border: none;
+            background-color: gray;
+            color: white;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        form div {
+            margin-top: 5%;
+            display: flex;
+        }
+        .newgame {
+            display: block;
+            margin: 5%;
+            background-color: black;
+            color: white;
+        }
     </style>
 </head>
 
@@ -38,6 +56,18 @@ h1 {
     <div class="container">
         <h1>hi hi</h1>
         <div class="ttt"></div>
+        <form action="">
+            <div>
+                <label for="">First player
+                    <input type="text" name="playerone">
+                </label>
+                <label for="">Second player
+                    <input type="text" name="playertwo">
+                </label>
+                <button type="submit">Change NAMES</button>
+            </div>
+            <button class='newgame' type="submit">RESTART</button>
+        </form>
     </div>
     <script src="script.js"></script>
 </body>
